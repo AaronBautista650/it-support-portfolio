@@ -47,3 +47,5 @@ bautista213@yahoo.com
 ## About Me
 
 I'm moving into IT from management in senior care and retail. I enjoy solving problems step by step and explaining the fix in plain language. I'm looking for a Tier 1 help desk, IT support, or NOC technician role.
+
+Practice edit
