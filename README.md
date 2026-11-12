@@ -25,7 +25,7 @@ bautista213@yahoo.com
 - Host: Eluktronics laptop 48GB RAM running VirtualBox
 - DC01: Windows Server 2022 (domain controller, DNS, DHCP)
 - WIN10-01: Windows 10 Home
-- KL01: Kali Linux (Linux practice)
+- UBU01: Ubuntu (Linux practice)
 - Network: internal-only
 
 ---
