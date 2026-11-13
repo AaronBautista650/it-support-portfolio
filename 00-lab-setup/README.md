@@ -63,7 +63,7 @@ From each VM, I pinged the other two to confirm the lab network works.
 | WIN11-01 | DC01, UBU01 | 4 replies each, 0% loss |
 | UBU01 | DC01, WIN11-01 | 4 replies each, 0% loss |
 
-![DC01 ping tests](images/dc01-ping.png)
+![DC01 ping tests](images/DC01-ping.png)
 
 ![WIN11-01 ping tests](images/WIN11-01-ping.png)
 
