@@ -40,8 +40,7 @@ Build a three-machine virtual lab in VirtualBox to practice help desk tasks: Act
 5. Enabled the ping firewall rule.
 6. Took a snapshot.
 
-![WIN11-01 IP configuration](images/win11-01-ipconfig.png)
-
+![WIN11-01 IP configuration](images/WIN11-01-ipconfig.png)
 ### 3. UBU01 (Ubuntu)
 
 1. Created the VM with 4 GB RAM, 2 CPUs, and a 40 GB disk.
@@ -50,9 +49,9 @@ Build a three-machine virtual lab in VirtualBox to practice help desk tasks: Act
 4. Switched the adapter back to `labnet` and set the static IP 192.168.10.30.
 5. Took a snapshot.
 
-![UBU01 disk layout](images/ubu01-disk.png)
+![UBU01 disk layout](images/UBU01-disk.png)
 
-![UBU01 IP address](images/ubu01-ip.png)
+![UBU01 IP address](images/UBU01-ip.png)
 
 ### 4. Testing connectivity
 
@@ -66,9 +65,9 @@ From each VM, I pinged the other two to confirm the lab network works.
 
 ![DC01 ping tests](images/dc01-ping.png)
 
-![WIN11-01 ping tests](images/win11-01-ping.png)
+![WIN11-01 ping tests](images/WIN11-01-ping.png)
 
-![UBU01 ping tests](images/ubu01-ping.png)
+![UBU01 ping tests](images/UBU01-ping.png)
 
 ## Troubleshooting
 
