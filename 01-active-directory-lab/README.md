@@ -119,17 +119,6 @@ On the WIN11-01 sign-in screen I clicked **Other user** and signed in with a dom
 
 ![whoami and hostname on WIN11-01](images/win11-01-user-login.png)
 
-### 8. Reset the Windows evaluation timer on WIN11-01
-
-WIN11-01 showed a "Windows License is expired" message in the bottom right of the desktop, because the Windows 11 Enterprise evaluation timer ran out. An expired evaluation can start shutting a VM down by itself, which would interrupt my lab. I reset the timer like this:
-
-1. I right-clicked **Start** and chose **Terminal (Admin)**, then clicked **Yes**. It has to run as Administrator.
-2. I ran `slmgr /dlv` to see the license status and the time remaining.
-3. I ran `slmgr /rearm`, which resets the evaluation timer.
-4. I restarted WIN11-01.
-
-Evaluation copies only allow a limited number of rearms, so I only run it when the license has actually expired.
-
 ## Troubleshooting
 
 | Problem | What caused it | How I fixed it |
@@ -138,7 +127,6 @@ Evaluation copies only allow a limited number of rearms, so I only run it when t
 | Creating an OU called "Computers" gave an error saying the name was already in use | AD already has a built-in Computers container with that name | I named my OU `Workstations` instead |
 | `nslookup lab.local` printed `Server: UnKnown` and a timeout message | DC01 had no reverse lookup zone to turn its IP address back into a name | I added a reverse lookup zone for 192.168.10.0/24 and ran `ipconfig /registerdns`, and now `nslookup` shows `DC01.lab.local` |
 | `slmgr /rearm` showed "Error 0xC004F025 Access denied: the requested action requires elevated privileges" | My PowerShell window was not running as Administrator | I opened PowerShell with **Run as administrator** and ran the command again |
-| WIN11-01 showed "Windows License is expired" | The 90-day evaluation timer ran out | I ran `slmgr /rearm` in an Administrator window and restarted |
 
 ## What I learned
 
