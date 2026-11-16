@@ -119,6 +119,41 @@ On the WIN11-01 sign-in screen I clicked **Other user** and signed in with a dom
 
 ![whoami and hostname on WIN11-01](images/win11-01-user-login.png)
 
+### 8. Configure DHCP on DC01 and switch WIN11-01 to automatic addressing
+
+Up to now I gave WIN11-01 a static IP address by hand. A help desk tech usually doesn't do that for every computer, so I set up DHCP on DC01 to hand out addresses automatically. Before I changed anything, I shut down DC01 and took a snapshot called "Before DHCP."
+
+**Finishing the DHCP setup.** The DHCP role was installed back in step 1, but it still needed to be configured. I clicked the yellow flag in Server Manager and chose **Complete DHCP configuration**. I clicked **Next** on the Description page, kept the default credentials on the Authorization page, and clicked **Commit**. After that I opened **Tools > DHCP**.
+
+![DHCP console showing the active scope on DC01](images/dc01-dhcp-scope-active.png)
+
+The console shows the scope with a green arrow. The green arrow means DC01 is authorized in Active Directory and the scope is turned on. 
+
+**Creating the scope.** I expanded **DC01.lab.local**, right-clicked **IPv4**, and chose **New Scope**. I named it `labnet-scope` and then set the address range. The IP range is the pool of addresses DHCP can hand out. I used a start address of 192.168.10.100 and an end address of 192.168.10.200, with a subnet mask of 255.255.255.0.
+
+![New Scope wizard showing the IP address range](images/dc01-dhcp-ip-range.png)
+
+I kept the static addresses outside the pool. DC01 is .10, UBU01 will be .30, and WIN11-01 was .50, so none of them can be given to another machine. I didn't need any exclusions. I left the lease duration at the default and chose **Yes, I want to configure these options now**.
+
+I left the Router page blank because labnet has no gateway. On the Domain Name and DNS page I typed `lab.local` as the parent domain and added 192.168.10.10 as the DNS server, so every client that gets an address also gets DC01 for DNS. This is the same DNS setting WIN11-01 had when I set it by hand. I skipped WINS and picked **Yes, I want to activate this scope** to finish the wizard.
+
+![DNS option showing lab.local and 192.168.10.10](images/dc01-dhcp-dns-option.png)
+
+**Switching WIN11-01 to automatic.** On WIN11-01 I opened the adapter's properties and double-clicked **Internet Protocol Version 4 (TCP/IPv4)**. I selected ip assignment to Automatic (DHCP) and DNS server assignment to Automatic (DHCP)
+![TCP/IPv4 properties set to obtain an IP address automatically](images/win11-01-tcpip-automatic.png)
+
+Next I opened Administrator PowerShell and ran `ipconfig /release`, then `ipconfig /renew`. The release drops the old static address, and the renew asks DC01 for a new one. Then I ran `ipconfig /all` to check the result.
+
+![ipconfig /all on WIN11-01 showing a DHCP address](images/win11-01-ipconfig-dhcp.png)
+
+The IPv4 address was now in the 192.168.10.100 to .200 range, and the DHCP Server line showed 192.168.10.10. The DNS server was still 192.168.10.10, so `nslookup lab.local` still worked.
+
+**Checking the lease on DC01.** Back on DC01, I expanded **Scope [192.168.10.0] labnet-scope** and clicked **Address Leases**. WIN11-01 was listed with its MAC address, its name, and a lease expiration time. This confirmed that DHCP gave the address out, not my static setting.
+
+![Address Leases on DC01 showing WIN11-01](images/dc01-dhcp-address-leases.png)
+
+**What I learned.** A DHCP scope only hands out the addresses inside its range, so static machines need to sit outside it. A DHCP client has to release and renew before it gets a new address. Also, if the DHCP server is not authorized, it will not hand out addresses at all, even if the scope looks correct.
+
 ## Troubleshooting
 
 | Problem | What caused it | How I fixed it |
@@ -136,5 +171,4 @@ On the WIN11-01 sign-in screen I clicked **Other user** and signed in with a dom
 
 ## Next steps
 
-- Configure DHCP on DC01 so WIN11-01 gets its address automatically.
 - Practice common help desk tasks such as password resets, unlocking accounts, onboarding and offboarding users, shared folders with permissions, and Group Policy.
