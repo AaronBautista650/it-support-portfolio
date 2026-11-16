@@ -168,7 +168,3 @@ The IPv4 address was now in the 192.168.10.100 to .200 range, and the DHCP Serve
 - The domain controller and DNS depend on each other. WIN11-01 could only find and join `lab.local` after I pointed its DNS to DC01.
 - Snapshots are really useful. I took them before big changes like installing roles and joining the domain, so I always had a way back.
 - Small mistakes, like a slash going the wrong way or running a command without admin rights, can cause errors that look more serious than they are. Reading the error message carefully helped me find each problem.
-
-## Next steps
-
-- Practice common help desk tasks such as password resets, unlocking accounts, onboarding and offboarding users, shared folders with permissions, and Group Policy.
