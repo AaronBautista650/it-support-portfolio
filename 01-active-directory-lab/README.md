@@ -139,7 +139,8 @@ I left the Router page blank because labnet has no gateway. On the Domain Name a
 
 ![DNS option showing lab.local and 192.168.10.10](images/dc01-dhcp-dns-option.png)
 
-**Switching WIN11-01 to automatic.** On WIN11-01 I opened the adapter's properties and double-clicked **Internet Protocol Version 4 (TCP/IPv4)**. I selected ip assignment to Automatic (DHCP) and DNS server assignment to Automatic (DHCP)
+**Switching WIN11-01 to automatic.**On WIN11-01 I opened Settings > Network & internet > Ethernet, clicked Edit next to IP assignment, and changed it from Manual to Automatic (DHCP). I also set DNS server assignment to Automatic (DHCP) and clicked Save.
+
 ![TCP/IPv4 properties set to obtain an IP address automatically](images/win11-01-tcpip-automatic.png)
 
 Next I opened Administrator PowerShell and ran `ipconfig /release`, then `ipconfig /renew`. The release drops the old static address, and the renew asks DC01 for a new one. Then I ran `ipconfig /all` to check the result.
