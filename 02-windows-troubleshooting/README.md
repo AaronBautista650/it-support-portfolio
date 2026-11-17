@@ -1,6 +1,6 @@
 # Windows Troubleshooting Guides
 
-##Objective
+## Objective
 
 I broke things on purpose on a Windows 11 virtual machine, then fixed them and wrote down each problem, cause, and fix. Windows troubleshooting is most of what a Tier 1 help desk tech does each day.
 

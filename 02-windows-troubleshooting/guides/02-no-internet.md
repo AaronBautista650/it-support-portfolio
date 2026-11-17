@@ -53,7 +53,7 @@ I did not run into any other problems on this run. The wrong DNS server was the 
 
 - I learned to check the network from the bottom up: first the IP address, then the path to DC01, then name resolution.
 
--learned that nslookup shows which DNS server answered a query, which tells me whether a client is using the right server.
+- learned that nslookup shows which DNS server answered a query, which tells me whether a client is using the right server.
 
--I learned that ipconfig /flushdns clears old name lookups, so I run it after a DNS fix before I test again.
+- I learned that ipconfig /flushdns clears old name lookups, so I run it after a DNS fix before I test again.
 
